@@ -36,6 +36,12 @@ export abstract class GfxRegistry {
     public static readonly VEGETATION_SMALL_TREE:       HTMLImageElement = GfxRegistry.loadSingleImage("./res/scenery/vegetation/trees/smallTree.png");
     public static readonly VEGETATION_BUSH:             HTMLImageElement = GfxRegistry.loadSingleImage("./res/scenery/vegetation/bush.png");
 
+    // TERRAIN:
+    public static readonly TERRAIN_ROCK:                HTMLImageElement = GfxRegistry.loadSingleImage("./res/scenery/rock.png");
+
+    // SIGNS:
+    public static readonly SIGN_WOODEN:                 HTMLImageElement = GfxRegistry.loadSingleImage("./res/scenery/sign.png");
+
     /**
      * Loads an array of images / frames, which can be used to construct animations.
      * File names have to look like this: 0.png, 1.png, ..., n.png;
