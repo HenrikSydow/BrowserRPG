@@ -31,6 +31,10 @@ export namespace AnimationConstants {
         VEGETATION_SMALL_TREE   = "vegetation_small_tree",
         VEGETATION_TREE_STUMP   = "vegetation_tree_stump",
         VEGETATION_BUSH         = "vegetation_bush",
+
+        TERRAIN_ROCK            = "terrain_rock",
+
+        SIGN_WOODEN             = "sign_wooden",
     }
 
     export enum AnimationTypes {

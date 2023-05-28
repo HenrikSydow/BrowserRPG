@@ -6,6 +6,8 @@ import { HitboxFactory } from "../physics/hitboxes/hitboxFactory.js";
 import { HitboxHandler } from "../physics/hitboxes/hitboxHandler.js";
 import { Slime } from "./customObjects/characters/enemies/slime.js";
 import { Player } from "./customObjects/characters/player.js";
+import { WoodenSign } from "./customObjects/scenery/signs/woodenSign.js";
+import { Rock } from "./customObjects/scenery/terrain/rock.js";
 import { Bush } from "./customObjects/scenery/vegetation/bush.js";
 import { BigTree } from "./customObjects/scenery/vegetation/trees/bigTree.js";
 import { SmallTree } from "./customObjects/scenery/vegetation/trees/smallTree.js";
@@ -148,6 +150,34 @@ export abstract class GameObjectFactory {
                     HitboxFactory.buildHitbox(HitboxConstants.HitboxName.BushGround, x, y)
                 );
                 gameObject = new Bush(x, y, animationHandler, hitboxHandler);
+                break;
+
+            case GameObjectConstants.GameObjectName.SignWooden:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.SIGN_WOODEN,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.SIGN_WOODEN)
+                );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.SignWoodenGround, x, y)
+                );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxName.SignWoodenReadRange,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.SignWoodenReadRange, x, y)
+                );
+                gameObject = new WoodenSign(x, y, animationHandler, hitboxHandler);
+                break;
+
+            case GameObjectConstants.GameObjectName.Rock:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.TERRAIN_ROCK,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.TERRAIN_ROCK)
+                );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.RockGround, x, y)
+                );
+                gameObject = new Rock(x, y, animationHandler, hitboxHandler);
                 break;
         }
 

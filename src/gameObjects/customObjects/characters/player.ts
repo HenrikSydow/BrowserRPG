@@ -5,10 +5,10 @@ import { ITrackable } from "../../../gfx/camera.js";
 import { KeyHandler } from "../../../keyHandler.js";
 import { HitboxHandler } from "../../../physics/hitboxes/hitboxHandler.js";
 import { HitboxConstants } from "../../../physics/hitboxes/hitboxConstants.js";
-import { Rectangle } from "../../../physics/shapes/rectangle.js";
 import { GameObjectConstants } from "../../gameObjectConstants.js";
 import { GameObjectHandler } from "../../gameObjectHandler.js";
 import { PhysicalGameObject } from "../../physicalGameObject.js";
+import { GameConstants } from "../../../gameConstants.js";
 
 export class Player extends PhysicalGameObject implements ITrackable {
 
@@ -21,16 +21,16 @@ export class Player extends PhysicalGameObject implements ITrackable {
     }
 
     public override update(): void {
-        if (KeyHandler.isPressed("w")) {
+        if (KeyHandler.isPressed(GameConstants.Controls.WalkUp)) {
             this.faceDirection = GameObjectConstants.FaceDirection.North;
             this.actionState = GameObjectConstants.ActionState.Walk;
-        } else if (KeyHandler.isPressed("a")) {
+        } else if (KeyHandler.isPressed(GameConstants.Controls.WalkLeft)) {
             this.faceDirection = GameObjectConstants.FaceDirection.West;
             this.actionState = GameObjectConstants.ActionState.Walk;
-        } else if (KeyHandler.isPressed("s")) {
+        } else if (KeyHandler.isPressed(GameConstants.Controls.WalkDown)) {
             this.faceDirection = GameObjectConstants.FaceDirection.South;
             this.actionState = GameObjectConstants.ActionState.Walk;
-        } else if (KeyHandler.isPressed("d")) {
+        } else if (KeyHandler.isPressed(GameConstants.Controls.WalkRight)) {
             this.faceDirection = GameObjectConstants.FaceDirection.East;
             this.actionState = GameObjectConstants.ActionState.Walk;
         } else {
@@ -124,6 +124,10 @@ export class Player extends PhysicalGameObject implements ITrackable {
     
     public getCenter(): number[] {
         return [this.x + 150, this.y + 150];
+    }
+
+    public getFaceDirection(): GameObjectConstants.FaceDirection {
+        return this.faceDirection;
     }
 
 }

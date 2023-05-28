@@ -55,6 +55,18 @@ export abstract class HitboxFactory {
                 shapes.push(new Rectangle(25, 140, 110, 10));
                 shapes.push(new Rectangle(25, 85, 110, 10));
                 break;
+            case HitboxConstants.HitboxName.SignWoodenGround:
+                shapes.push(new Rectangle(10, 50, 60, 15));
+                break;
+            case HitboxConstants.HitboxName.SignWoodenReadRange:
+                shapes.push(new Rectangle(10, 50, 60, 25));
+                break;
+            case HitboxConstants.HitboxName.RockGround:
+                shapes.push(new Rectangle(20, 30, 45, 10));
+                shapes.push(new Rectangle(0, 40, 75, 20));
+                shapes.push(new Rectangle(25, 60, 40, 10));
+                shapes.push(new Rectangle(35, 70, 20, 5));
+                break;
         }
 
         return new Hitbox(x, y, shapes);

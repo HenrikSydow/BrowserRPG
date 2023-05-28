@@ -18,6 +18,8 @@ export namespace GameObjectConstants {
         TreeStump   = "treeStump",
         Bush        = "bush",
         Slime       = "slime",
+        SignWooden  = "signWooden",
+        Rock        = "rock",
     }
 
     export enum FaceDirection {

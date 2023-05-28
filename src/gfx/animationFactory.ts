@@ -94,6 +94,16 @@ export abstract class AnimationFactory {
                 animation = new Animation([GfxRegistry.VEGETATION_BUSH]);
                 animation.setScale(5);
                 break;
+
+            case AnimationConstants.AnimationNames.TERRAIN_ROCK:
+                animation = new Animation([GfxRegistry.TERRAIN_ROCK]);
+                animation.setScale(5);
+                break;
+
+            case AnimationConstants.AnimationNames.SIGN_WOODEN:
+                animation = new Animation([GfxRegistry.SIGN_WOODEN]);
+                animation.setScale(5);
+                break;
         }
 
         return animation;
