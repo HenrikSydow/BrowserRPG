@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "ES2020",
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "removeComments": true,
+        "noEmitOnError": true,
+        "noImplicitOverride": true
+        // "sourceMap": true
+    },
+    "typedocOptions": {
+        "out": "docs",
+        "name": "RPG_Engine",
+        "entryPoints": [
+            "./src",
+            "./src/cookies",
+            "./src/gameObjects",
+            "./src/gfx",
+            "./src/hud",
+            "./src/maths",
+            "./src/physics",
+        ],
+        "sort": ["source-order"],
+    }
+}
