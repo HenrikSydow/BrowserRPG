@@ -1,5 +1,4 @@
 ## RPG Engine
 
-A simple RPG engine written in typescript.  
-Visit the official **documentation** here: https://henriksydow.de/repositories/rpg_engine/docs/  
-Take a look at the *deprecated* javascript version here: https://henriksydow.de/js/gameTwo
+A simple RPG based on my very simple browser game engine, written in typescript.  
+Take a look at the **game engine**'s repository here: https://github.com/HenrikSydow/rpg_engine  
