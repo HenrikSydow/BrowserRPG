@@ -6,6 +6,7 @@ import { HitboxFactory } from "../physics/hitboxes/hitboxFactory.js";
 import { HitboxHandler } from "../physics/hitboxes/hitboxHandler.js";
 import { Slime } from "./customObjects/characters/enemies/slime.js";
 import { Player } from "./customObjects/characters/player.js";
+import { BasicWarp } from "./customObjects/events/warp/basicWarp.js";
 import { WoodenSign } from "./customObjects/scenery/signs/woodenSign.js";
 import { Rock } from "./customObjects/scenery/terrain/rock.js";
 import { Bush } from "./customObjects/scenery/vegetation/bush.js";
@@ -178,6 +179,14 @@ export abstract class GameObjectFactory {
                     HitboxFactory.buildHitbox(HitboxConstants.HitboxName.RockGround, x, y)
                 );
                 gameObject = new Rock(x, y, animationHandler, hitboxHandler);
+                break;
+
+            case GameObjectConstants.GameObjectName.BasicWarp:
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.WarpHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.BasicWarp, x, y)
+                );
+                gameObject = new BasicWarp(hitboxHandler, x, y);
                 break;
         }
 

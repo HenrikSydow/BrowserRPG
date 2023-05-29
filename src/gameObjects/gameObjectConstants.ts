@@ -20,6 +20,7 @@ export namespace GameObjectConstants {
         Slime       = "slime",
         SignWooden  = "signWooden",
         Rock        = "rock",
+        BasicWarp   = "basicWarp",
     }
 
     export enum FaceDirection {

@@ -67,6 +67,9 @@ export abstract class HitboxFactory {
                 shapes.push(new Rectangle(25, 60, 40, 10));
                 shapes.push(new Rectangle(35, 70, 20, 5));
                 break;
+            case HitboxConstants.HitboxName.BasicWarp:
+                shapes.push(new Rectangle(0, 0, 100, 100));
+                break;
         }
 
         return new Hitbox(x, y, shapes);

@@ -153,7 +153,34 @@ export class Hitbox {
         if (!this.isEnabled()) {
             return false;
         }
-        throw new Error("\"contains\" method is not implemented in hitbox.ts");
+        if (hitbox.getShapes().length > 1 || this.shapes.length > 1) {
+            throw new Error("\"contains\" method is not implemented in hitbox.ts");
+        }
+
+        let doesContain: boolean = false;
+
+        hitbox.getShapes().forEach( shape => {
+            if (shape instanceof Rectangle) {
+                this.shapes.forEach( myShape => {
+                    if (myShape instanceof Rectangle) {
+                        if (
+                            hitbox.getX() + shape.getLocalX() > this.x + myShape.getLocalX() &&
+                            hitbox.getY() + shape.getLocalY() > this.y + myShape.getLocalY() &&
+                            hitbox.getX() + shape.getLocalX() + shape.getWidth () < this.x + myShape.getWidth () - 2 &&
+                            hitbox.getY() + shape.getLocalY() + shape.getHeight() < this.y + myShape.getHeight() - 2
+                        ) {
+                            doesContain = true;
+                        }
+                    } else {
+                        throw new Error("\"contains\" method is not implemented in hitbox.ts");
+                    }
+                });
+            } else {
+                throw new Error("\"contains\" method is not implemented in hitbox.ts");
+            }
+        });
+
+        return doesContain;
     }
 
 }

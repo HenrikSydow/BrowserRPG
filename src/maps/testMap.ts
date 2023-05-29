@@ -21,6 +21,7 @@ export class TestMap extends BaseMap {
         this.spawnGameObject(GameObjectConstants.GameObjectName.SmallTree, 280, 170);
         this.spawnGameObject(GameObjectConstants.GameObjectName.Bush, -486, 273);
         this.spawnGameObject(GameObjectConstants.GameObjectName.Slime, 58, 317);
+        this.spawnGameObject(GameObjectConstants.GameObjectName.BasicWarp, 218, 164);
     }
 
 }

@@ -21,10 +21,12 @@ export namespace HitboxConstants {
         SignWoodenGround        = "wooden_sign_ground",
         SignWoodenReadRange     = "wooden_sign_read_range",
         RockGround              = "rock_ground",
+        BasicWarp               = "basic_warp",
     }
 
     export enum HitboxType {
         GroundHitbox        = "ground_hitbox",
+        WarpHitbox          = "warp_hitbox",
     }
 
 }

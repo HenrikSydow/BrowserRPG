@@ -1,3 +1,4 @@
+import { Player } from "../gameObjects/customObjects/characters/player.js";
 import { GameObject } from "../gameObjects/gameObject.js";
 import { GameObjectConstants } from "../gameObjects/gameObjectConstants.js";
 import { GameObjectFactory } from "../gameObjects/gameObjectFactory.js";
@@ -48,6 +49,9 @@ ${objectCreation}
 
         // iterate all gameobjects and resolve their gameObjectName-enum key by filtering for matching values:
         GameObjectHandler.getAllObjects().forEach(gameObject => {
+            if (gameObject instanceof Player) {
+                return;
+            }
             typeEnumMap.forEach((enumValue, className) => {
                 if (className == gameObject.constructor.name) {
                     let enumKey = Object.keys(GameObjectConstants.GameObjectName).filter(key => GameObjectConstants.GameObjectName[key] == enumValue);
