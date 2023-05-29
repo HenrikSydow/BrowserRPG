@@ -10,13 +10,12 @@ export abstract class MapExporter {
         let className = mapName.charAt(0).toUpperCase() + mapName.slice(1);
         let objectCreation: string = this.getGameObjectCreationScript();
         return `
-import { GameObjectHandler } from "./gameObjects/gameObjectHandler.js";
-import { GameObjectFactory } from "./gameObjects/gameObjectFactory.js";
-import { GameObjectConstants } from "./gameObjects/gameObjectConstants.js";
+import { BaseMap } from "./baseMap.js";
+import { GameObjectConstants } from "../gameObjects/gameObjectConstants.js";
 
-export class ${className} {
+export class ${className} extends BaseMap {
 
-    constructor() {
+    protected override loadObjects() {
 ${objectCreation}
     }
 
@@ -52,7 +51,7 @@ ${objectCreation}
             typeEnumMap.forEach((enumValue, className) => {
                 if (className == gameObject.constructor.name) {
                     let enumKey = Object.keys(GameObjectConstants.GameObjectName).filter(key => GameObjectConstants.GameObjectName[key] == enumValue);
-                    objectCreationScript += `        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.${enumKey}, ${gameObject.getX()}, ${gameObject.getY()}));\n`;
+                    objectCreationScript += `        this.spawnGameObject(GameObjectConstants.GameObjectName.${enumKey}, ${gameObject.getX()}, ${gameObject.getY()});\n`;
                     return;
                 }
             });

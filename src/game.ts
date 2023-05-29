@@ -9,6 +9,8 @@ import { GameObjectConstants } from "./gameObjects/gameObjectConstants.js";
 import { Camera } from "./gfx/camera.js";
 import { Player } from "./gameObjects/customObjects/characters/player.js";
 import { MapEditor } from "./mapEditor/mapEditor.js";
+import { MapHandler } from "./maps/mapHandler.js";
+import { MapConstants } from "./maps/mapConstants.js";
 
 /**
  * Main class of the engine.
@@ -37,22 +39,23 @@ export class Game {
         globalThis.addEventListener("keydown", KeyHandler.handleKeyDown);
         globalThis.addEventListener("keyup", KeyHandler.handleKeyUp);
 
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.BigTree, 96, -279));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.BigTree, -116, -249));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Rock, 82, -27));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.SmallTree, -203, -127));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.BigTree, -406, -170));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.SmallTree, 232, -80));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.TreeStump, -95, 109));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.BigTree, 358, -41));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.BigTree, -488, -31));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.SignWooden, 8, 197));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Bush, -388, 207));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Slime, 48, 246));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Slime, 140, 273));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.SmallTree, 280, 170));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Bush, -486, 273));
-        GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Slime, 58, 317));
+        MapHandler.loadMap(MapConstants.MapID.ExampleMap);
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.BigTree, 96, -279));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.BigTree, -116, -249));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Rock, 82, -27));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.SmallTree, -203, -127));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.BigTree, -406, -170));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.SmallTree, 232, -80));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.TreeStump, -95, 109));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.BigTree, 358, -41));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.BigTree, -488, -31));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.SignWooden, 8, 197));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Bush, -388, 207));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Slime, 48, 246));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Slime, 140, 273));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.SmallTree, 280, 170));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Bush, -486, 273));
+        // GameObjectHandler.add(GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Slime, 58, 317));
 
         let player: Player = GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.Player, 0, 0) as Player;
         GameObjectHandler.add(player);
