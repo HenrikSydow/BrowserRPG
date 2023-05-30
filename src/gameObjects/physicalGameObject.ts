@@ -1,8 +1,8 @@
 import { AnimationHandler } from "../gfx/animationHandler.js";
-import { HitboxHandler } from "../physics/index.js";
+import { HitboxHandler, ICollider } from "../physics/hitboxes/hitboxHandler.js";
 import { GameObject } from "./gameObject.js";
 
-export abstract class PhysicalGameObject extends GameObject {
+export abstract class PhysicalGameObject extends GameObject implements ICollider {
 
     protected animationHandler: AnimationHandler;
     protected hitboxHandler: HitboxHandler;

@@ -1,5 +1,9 @@
 import { Hitbox } from "./hitbox.js";
 
+export interface ICollider {
+    getHitboxHandler(): HitboxHandler;
+}
+
 /**
  * A handler for multiple {@link Hitbox}es.
  */

@@ -14,6 +14,7 @@ import { GameObjectFactory } from "../gameObjects/gameObjectFactory.js";
 import { GameTime } from "../gameTime.js";
 import { Circle } from "../physics/shapes/circle.js";
 import { MapExporter } from "./mapExporter.js";
+import { ICollider } from "../physics/hitboxes/hitboxHandler.js";
 
 export class MapEditor {
 
@@ -126,24 +127,39 @@ export class MapEditor {
     }
 
     private renderHitboxes(ctx: CanvasRenderingContext2D): void {
-        this.hitboxesToShow.forEach(hBoxEnum => {
-            GameObjectHandler.getObjectsByType(PhysicalGameObject).forEach(object => {
-                let hBox: Hitbox = (object as PhysicalGameObject).getHitboxHandler().getHitbox(hBoxEnum);
-                if (hBox == undefined) {
-                    return;
-                }
-                ctx.strokeStyle = "red";
-                hBox.getShapes().forEach(shape => {
-                    if (shape instanceof Rectangle) {
-                        let rectShape: Rectangle = shape as Rectangle;
-                        let xCor: number = hBox.getX() + rectShape.getLocalX();
-                        let yCor: number = hBox.getY() + rectShape.getLocalY();
-                        ctx.strokeRect(xCor, yCor, rectShape.getWidth(), rectShape.getHeight());
-                    } else if (shape instanceof Circle) {
-                        throw Error("Not implemented.");
+        let getUniqueColor: Function = (colorIndex: number, totalColors: number): string => {
+            if (totalColors <= 0) return "";
+            return `hsl(${colorIndex * 360 / totalColors}, 100%, 50%)`;
+        };
+        let hitboxEnumKeys: Array<string> = Object.keys(HitboxConstants.HitboxType).filter(id => {
+            return isNaN(Number(id));
+        });
+        
+        let colorCounter: number = 0;
+        hitboxEnumKeys.forEach( enumKey => {
+            let enumValue: HitboxConstants.HitboxType = HitboxConstants.HitboxType[enumKey] as HitboxConstants.HitboxType;
+            if (this.hitboxesToShow.has(enumValue)) {
+                GameObjectHandler.getAllObjects().forEach( obj => {
+                    if ("getHitboxHandler" in obj) {  // check for interface ICollider
+                        let hBox: Hitbox = (obj as ICollider).getHitboxHandler().getHitbox(enumValue);
+                        if (hBox == undefined) {
+                            return;
+                        }
+                        ctx.strokeStyle = getUniqueColor(colorCounter, hitboxEnumKeys.length);
+                        hBox.getShapes().forEach(shape => {
+                            if (shape instanceof Rectangle) {
+                                let rectShape: Rectangle = shape as Rectangle;
+                                let xCor: number = hBox.getX() + rectShape.getLocalX();
+                                let yCor: number = hBox.getY() + rectShape.getLocalY();
+                                ctx.strokeRect(xCor, yCor, rectShape.getWidth(), rectShape.getHeight());
+                            } else if (shape instanceof Circle) {
+                                throw Error("Not implemented.");
+                            }
+                        });
                     }
-                })
-            });
+                });
+            }
+            colorCounter++;
         });
     }
 

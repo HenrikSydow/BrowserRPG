@@ -1,11 +1,11 @@
-import { HitboxHandler } from "../../../../physics/hitboxes/hitboxHandler.js";
+import { HitboxHandler, ICollider } from "../../../../physics/hitboxes/hitboxHandler.js";
 import { Hitbox } from "../../../../physics/hitboxes/hitbox.js";
 import { HitboxConstants } from "../../../../physics/hitboxes/hitboxConstants.js";
 import { GameObject } from "../../../gameObject.js";
 import { GameObjectHandler } from "../../../gameObjectHandler.js";
 import { Player } from "../../characters/player.js";
 
-export class BasicWarp extends GameObject {
+export class BasicWarp extends GameObject implements ICollider {
 
     protected warpId: number;
     protected connectedWarp: BasicWarp;
@@ -33,6 +33,10 @@ export class BasicWarp extends GameObject {
 
     public setWarpId(id: number): void {
         this.warpId = id;
+    }
+    
+    public getHitboxHandler(): HitboxHandler {
+        return this.hitboxHandler;
     }
 
     public getConnectedWarp(): BasicWarp {
