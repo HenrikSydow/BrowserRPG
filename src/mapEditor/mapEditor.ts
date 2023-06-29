@@ -15,6 +15,7 @@ import { GameTime } from "../gameTime.js";
 import { Circle } from "../physics/shapes/circle.js";
 import { MapExporter } from "./mapExporter.js";
 import { ICollider } from "../physics/hitboxes/hitboxHandler.js";
+import { BasicWarp } from "../gameObjects/customObjects/events/warp/basicWarp.js";
 
 export class MapEditor {
 
@@ -124,6 +125,24 @@ export class MapEditor {
             this.dropGameObject.render(ctx);
             ctx.globalAlpha = initialAlpha;
         }
+        if (this.dropGameObject instanceof BasicWarp) {
+            let warpHBox: Hitbox = this.dropGameObject.getHitboxHandler().getHitbox(HitboxConstants.HitboxType.WarpHitbox);
+            this.renderHitbox(warpHBox, ctx, "rgb(255, 0, 0)");
+        }
+    }
+
+    private renderHitbox(hBox: Hitbox, ctx: CanvasRenderingContext2D, color: string): void {
+        ctx.strokeStyle = color;
+        hBox.getShapes().forEach(shape => {
+            if (shape instanceof Rectangle) {
+                let rectShape: Rectangle = shape as Rectangle;
+                let xCor: number = hBox.getX() + rectShape.getLocalX();
+                let yCor: number = hBox.getY() + rectShape.getLocalY();
+                ctx.strokeRect(xCor, yCor, rectShape.getWidth(), rectShape.getHeight());
+            } else if (shape instanceof Circle) {
+                throw Error("Not implemented.");
+            }
+        });
     }
 
     private renderHitboxes(ctx: CanvasRenderingContext2D): void {
@@ -145,17 +164,8 @@ export class MapEditor {
                         if (hBox == undefined) {
                             return;
                         }
-                        ctx.strokeStyle = getUniqueColor(colorCounter, hitboxEnumKeys.length);
-                        hBox.getShapes().forEach(shape => {
-                            if (shape instanceof Rectangle) {
-                                let rectShape: Rectangle = shape as Rectangle;
-                                let xCor: number = hBox.getX() + rectShape.getLocalX();
-                                let yCor: number = hBox.getY() + rectShape.getLocalY();
-                                ctx.strokeRect(xCor, yCor, rectShape.getWidth(), rectShape.getHeight());
-                            } else if (shape instanceof Circle) {
-                                throw Error("Not implemented.");
-                            }
-                        });
+                        let color: string = getUniqueColor(colorCounter, hitboxEnumKeys.length);
+                        this.renderHitbox(hBox, ctx, color);
                     }
                 });
             }
@@ -184,13 +194,28 @@ export class MapEditor {
     }
 
     private updateDropGameObject(): void {
-        if (this.dropGameObject != undefined) {
-            this.dropGameObject.setX(this.getGlobalMouseX());
-            this.dropGameObject.setY(this.getGlobalMouseY());
+        if (this.dropGameObject == undefined) {
+            return;
+        }
+
+        let initialX: number = this.dropGameObject.getX();
+        let initialY: number = this.dropGameObject.getY();
+        this.dropGameObject.setX(this.getGlobalMouseX());
+        this.dropGameObject.setY(this.getGlobalMouseY());
+
+        try {
             this.dropGameObject.getAnimationhandler().update(
                 this.dropGameObject.getX(),
                 this.dropGameObject.getY()
             )
+        } catch (error) {
+            // There is no animation handler --> skip updating animation handler
+        }
+
+        try {
+            this.dropGameObject.getHitboxHandler().shift(this.getGlobalMouseX() - initialX, this.getGlobalMouseY() - initialY);
+        } catch (error) {
+            // There is no hitbox handler --> skup updating hitbox handler
         }
     }
 
