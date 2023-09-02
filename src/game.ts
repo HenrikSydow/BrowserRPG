@@ -9,8 +9,8 @@ import { GameObjectConstants } from "./gameObjects/gameObjectConstants.js";
 import { Camera } from "./gfx/camera.js";
 import { Player } from "./gameObjects/customObjects/characters/player.js";
 import { MapEditor } from "./mapEditor/mapEditor.js";
-import { MapHandler } from "./maps/mapHandler.js";
-import { MapConstants } from "./maps/mapConstants.js";
+import { MapHandler } from "./mapHandler/mapHandler.js";
+import { MapConstants } from "./mapHandler/mapConstants.js";
 
 /**
  * Main class of the engine.

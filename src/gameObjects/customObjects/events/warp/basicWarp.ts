@@ -4,12 +4,15 @@ import { HitboxConstants } from "../../../../physics/hitboxes/hitboxConstants.js
 import { GameObject } from "../../../gameObject.js";
 import { GameObjectHandler } from "../../../gameObjectHandler.js";
 import { Player } from "../../characters/player.js";
+import { MapConstants } from "../../../../mapHandler/mapConstants.js";
+import { MapHandler } from "../../../../mapHandler/mapHandler.js";
 
 export class BasicWarp extends GameObject implements ICollider {
 
-    protected warpId: number;
-    protected connectedWarp: BasicWarp;
     protected hitboxHandler: HitboxHandler;
+    protected targetMapId: MapConstants.MapID;
+    protected targetX: number;
+    protected targetY: number;
 
     constructor(hitboxHandler: HitboxHandler, x: number, y: number) {
         super(x, y);
@@ -23,28 +26,36 @@ export class BasicWarp extends GameObject implements ICollider {
             let thisWarpHBox: Hitbox = this.hitboxHandler.getHitbox(HitboxConstants.HitboxType.WarpHitbox);
             if (thisWarpHBox.contains(playerGroundHBox)) {
                 console.log("warping...");
+                this.warp(player);
             }
         }
     }
 
-    public setConnectedWarp(warp: BasicWarp): void {
-        this.connectedWarp = warp;
+    public setWarpTarget(targetMapId: MapConstants.MapID, targetX: number, targetY: number) {
+        this.targetMapId = targetMapId;
+        this.targetX = targetX;
+        this.targetY = targetY;
     }
 
-    public setWarpId(id: number): void {
-        this.warpId = id;
+    private isWarpTargetDefined(): boolean {
+        return (
+            this.targetMapId != undefined &&
+            this.targetX != undefined &&
+            this.targetY != undefined
+        )
     }
-    
+
+    protected warp(player: Player): void {
+        if (this.isWarpTargetDefined()) {
+            MapHandler.loadMap(this.targetMapId);
+            player.setX(this.targetX);
+            player.setY(this.targetY);
+            GameObjectHandler.add(player);
+        }
+    }
+
     public getHitboxHandler(): HitboxHandler {
         return this.hitboxHandler;
-    }
-
-    public getConnectedWarp(): BasicWarp {
-        return this.connectedWarp;
-    }
-
-    public getWarpId(): number {
-        return this.warpId;
     }
 
     public override render(ctx: CanvasRenderingContext2D): void { }

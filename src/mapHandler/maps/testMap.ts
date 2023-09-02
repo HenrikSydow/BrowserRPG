@@ -1,6 +1,10 @@
 
-import { BaseMap } from "./baseMap.js";
-import { GameObjectConstants } from "../gameObjects/gameObjectConstants.js";
+import { BaseMap } from "../baseMap.js";
+import { GameObjectConstants } from "../../gameObjects/gameObjectConstants.js";
+import { BasicWarp } from "../../gameObjects/customObjects/events/warp/basicWarp.js";
+import { GameObjectHandler } from "../../gameObjects/gameObjectHandler.js";
+import { GameObjectFactory } from "../../gameObjects/gameObjectFactory.js";
+import { MapConstants } from "../mapConstants.js";
 
 export class TestMap extends BaseMap {
 
@@ -21,7 +25,9 @@ export class TestMap extends BaseMap {
         this.spawnGameObject(GameObjectConstants.GameObjectName.SmallTree, 280, 170);
         this.spawnGameObject(GameObjectConstants.GameObjectName.Bush, -486, 273);
         this.spawnGameObject(GameObjectConstants.GameObjectName.Slime, 58, 317);
-        this.spawnGameObject(GameObjectConstants.GameObjectName.BasicWarp, 218, 164);
+        let warp: BasicWarp = GameObjectFactory.buildGameObject(GameObjectConstants.GameObjectName.BasicWarp, 218, 164) as BasicWarp;
+        warp.setWarpTarget(MapConstants.MapID.RockyTestMap, 80, 80);
+        GameObjectHandler.add(warp);
     }
 
 }

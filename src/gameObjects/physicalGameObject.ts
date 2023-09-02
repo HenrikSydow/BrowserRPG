@@ -25,4 +25,14 @@ export abstract class PhysicalGameObject extends GameObject implements ICollider
         return this.animationHandler;
     }
 
+    public override setX(value: number): void {
+        this.hitboxHandler.shift(value - this.x, 0);
+        super.setX(value);
+    }
+
+    public override setY(value: number): void {
+        this.hitboxHandler.shift(0, value - this.y);
+        super.setY(value);
+    }
+
 }

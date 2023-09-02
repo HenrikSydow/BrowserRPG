@@ -11,8 +11,8 @@ export abstract class MapExporter {
         let className = mapName.charAt(0).toUpperCase() + mapName.slice(1);
         let objectCreation: string = this.getGameObjectCreationScript();
         return `
-import { BaseMap } from "./baseMap.js";
-import { GameObjectConstants } from "../gameObjects/gameObjectConstants.js";
+import { BaseMap } from "./../baseMap.js";
+import { GameObjectConstants } from "../../gameObjects/gameObjectConstants.js";
 
 export class ${className} extends BaseMap {
 
