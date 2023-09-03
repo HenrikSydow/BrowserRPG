@@ -42,6 +42,18 @@ export abstract class GfxRegistry {
     // SIGNS:
     public static readonly SIGN_WOODEN:                 HTMLImageElement = GfxRegistry.loadSingleImage("./res/scenery/sign.png");
 
+    // HOUSES:
+    public static readonly SIMPLE_FARM_HOUSE:           HTMLImageElement = GfxRegistry.loadSingleImage("./res/structures/houses/simpleFarmHouse.png");
+
+    public static readonly STONE_WALL:                  HTMLImageElement = GfxRegistry.loadSingleImage("./res/structures/houses/gray_brick_walls/stonewall.png");
+    public static readonly STONE_WALL_END:              HTMLImageElement = GfxRegistry.loadSingleImage("./res/structures/houses/gray_brick_walls/stonewall_end.png");
+    public static readonly STONE_WALL_VERTICAL:         HTMLImageElement = GfxRegistry.loadSingleImage("./res/structures/houses/gray_brick_walls/stonewall_vertical.png");
+    public static readonly STONE_WALL_LOWER_CORNER:     HTMLImageElement = GfxRegistry.loadSingleImage("./res/structures/houses/gray_brick_walls/stonewall_lower_corner.png");
+    public static readonly STONE_WALL_UPPER_CORNER:     HTMLImageElement = GfxRegistry.loadSingleImage("./res/structures/houses/gray_brick_walls/stonewall_upper_corner.png");
+
+    public static readonly FLOOR_WOODEN:                HTMLImageElement = GfxRegistry.loadSingleImage("./res/structures/houses/floor/floor_wooden.png");
+
+
     /**
      * Loads an array of images / frames, which can be used to construct animations.
      * File names have to look like this: 0.png, 1.png, ..., n.png;

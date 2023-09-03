@@ -1,3 +1,4 @@
+import { Animation } from "../gfx/animation.js";
 import { AnimationConstants } from "../gfx/animationConstants.js";
 import { AnimationFactory } from "../gfx/animationFactory.js";
 import { AnimationHandler } from "../gfx/animationHandler.js";
@@ -13,6 +14,16 @@ import { Bush } from "./customObjects/scenery/vegetation/bush.js";
 import { BigTree } from "./customObjects/scenery/vegetation/trees/bigTree.js";
 import { SmallTree } from "./customObjects/scenery/vegetation/trees/smallTree.js";
 import { TreeStump } from "./customObjects/scenery/vegetation/trees/treeStump.js";
+import { Floor } from "./customObjects/structures/houses/floor.js";
+import { SimpleFarmHouse } from "./customObjects/structures/houses/simpleFarmHouse.js";
+import { StoneWall } from "./customObjects/structures/stoneWalls/stoneWall.js";
+import { StoneWallEndLeft } from "./customObjects/structures/stoneWalls/stoneWallEndLeft.js";
+import { StoneWallEndRight } from "./customObjects/structures/stoneWalls/stoneWallEndRight.js";
+import { StoneWallLowerCornerLeft } from "./customObjects/structures/stoneWalls/stoneWallLowerCornerLeft.js";
+import { StoneWallLowerCornerRight } from "./customObjects/structures/stoneWalls/stoneWallLowerCornerRight.js";
+import { StoneWallUpperCornerLeft } from "./customObjects/structures/stoneWalls/stoneWallUpperCornerLeft.js";
+import { StoneWallUpperCornerRight } from "./customObjects/structures/stoneWalls/stoneWallUpperCornerRight.js";
+import { StoneWallVertical } from "./customObjects/structures/stoneWalls/stoneWallVertical.js";
 import { GameObject } from "./gameObject.js";
 import { GameObjectConstants } from "./gameObjectConstants.js";
 
@@ -187,6 +198,121 @@ export abstract class GameObjectFactory {
                     HitboxFactory.buildHitbox(HitboxConstants.HitboxName.BasicWarp, x, y)
                 );
                 gameObject = new BasicWarp(hitboxHandler, x, y);
+                break;
+
+            case GameObjectConstants.GameObjectName.SimpleFarmHouse:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.STRUCTURE_HOUSE_SIMPLE_FARM,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.STRUCTURE_HOUSE_SIMPLE_FARM)
+                );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.SimpleFarmHouse, x, y)
+                );
+                gameObject = new SimpleFarmHouse(x, y, animationHandler, hitboxHandler);
+                break;
+
+            case GameObjectConstants.GameObjectName.StoneWall:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.STONE_WALL,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.STONE_WALL)
+                );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.StoneWall, x, y)
+                );
+                gameObject = new StoneWall(x, y, animationHandler, hitboxHandler);
+                break;
+            case GameObjectConstants.GameObjectName.StoneWallEndRight:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.STONE_WALL_END,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.STONE_WALL_END)
+                );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.StoneWallEnd, x, y)
+                );
+                gameObject = new StoneWallEndLeft(x, y, animationHandler, hitboxHandler);
+                break;
+            case GameObjectConstants.GameObjectName.StoneWallEndLeft:
+                let wallEndAnimation: Animation = AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.STONE_WALL_END);
+                wallEndAnimation.setFlipOnY(true);
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.STONE_WALL_END,
+                    wallEndAnimation
+                );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.StoneWallEnd, x, y)
+                );
+                gameObject = new StoneWallEndRight(x, y, animationHandler, hitboxHandler);
+                break;
+            case GameObjectConstants.GameObjectName.StoneWallVertical:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.STONE_WALL_VERTICAL,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.STONE_WALL_VERTICAL)
+                );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.StoneWallVertical, x, y)
+                );
+                gameObject = new StoneWallVertical(x, y, animationHandler, hitboxHandler);
+                break;
+            case GameObjectConstants.GameObjectName.StoneWallLowerCornerLeft:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.STONE_WALL_LOWER_CORNER,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.STONE_WALL_LOWER_CORNER)
+                );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.StoneWallLowerCornerLeft, x, y)
+                );
+                gameObject = new StoneWallLowerCornerLeft(x, y, animationHandler, hitboxHandler);
+                break;
+            case GameObjectConstants.GameObjectName.StoneWallLowerCornerRight:
+                let lowerCornerAnimation: Animation = AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.STONE_WALL_LOWER_CORNER);
+                lowerCornerAnimation.setFlipOnY(true);
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.STONE_WALL_LOWER_CORNER,
+                    lowerCornerAnimation
+                );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.StoneWallLowerCornerRight, x, y)
+                );
+                gameObject = new StoneWallLowerCornerRight(x, y, animationHandler, hitboxHandler);
+                break;
+            case GameObjectConstants.GameObjectName.StoneWallUpperCornerLeft:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.STONE_WALL_UPPER_CORNER,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.STONE_WALL_UPPER_CORNER)
+                );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.StoneWallUpperCornerLeft, x, y)
+                );
+                gameObject = new StoneWallUpperCornerLeft(x, y, animationHandler, hitboxHandler);
+                break;
+            case GameObjectConstants.GameObjectName.StoneWallUpperCornerRight:
+                let upperCornerAnimation: Animation = AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.STONE_WALL_UPPER_CORNER);
+                upperCornerAnimation.setFlipOnY(true);
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.STONE_WALL_UPPER_CORNER,
+                    upperCornerAnimation
+                );
+                hitboxHandler.addHitbox(
+                    HitboxConstants.HitboxType.GroundHitbox,
+                    HitboxFactory.buildHitbox(HitboxConstants.HitboxName.StoneWallUpperCornerRight, x, y)
+                );
+                gameObject = new StoneWallUpperCornerRight(x, y, animationHandler, hitboxHandler);
+                break;
+            
+            case GameObjectConstants.GameObjectName.FloorWooden:
+                animationHandler.addAnimation(
+                    AnimationConstants.AnimationNames.FLOOR_WOODEN,
+                    AnimationFactory.buildAnimation(AnimationConstants.AnimationNames.FLOOR_WOODEN)
+                );
+                gameObject = new Floor(x, y, animationHandler);
                 break;
         }
 

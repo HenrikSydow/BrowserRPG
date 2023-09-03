@@ -104,6 +104,37 @@ export abstract class AnimationFactory {
                 animation = new Animation([GfxRegistry.SIGN_WOODEN]);
                 animation.setScale(5);
                 break;
+
+            case AnimationConstants.AnimationNames.STRUCTURE_HOUSE_SIMPLE_FARM:
+                animation = new Animation([GfxRegistry.SIMPLE_FARM_HOUSE]);
+                animation.setScale(5);
+                break;
+            
+            case AnimationConstants.AnimationNames.STONE_WALL:
+                animation = new Animation([GfxRegistry.STONE_WALL]);
+                animation.setScale(5);
+                break;
+            case AnimationConstants.AnimationNames.STONE_WALL_END:
+                animation = new Animation([GfxRegistry.STONE_WALL_END]);
+                animation.setScale(5);
+                break;
+            case AnimationConstants.AnimationNames.STONE_WALL_VERTICAL:
+                animation = new Animation([GfxRegistry.STONE_WALL_VERTICAL]);
+                animation.setScale(5);
+                break;
+            case AnimationConstants.AnimationNames.STONE_WALL_LOWER_CORNER:
+                animation = new Animation([GfxRegistry.STONE_WALL_LOWER_CORNER]);
+                animation.setScale(5);
+                break;
+            case AnimationConstants.AnimationNames.STONE_WALL_UPPER_CORNER:
+                animation = new Animation([GfxRegistry.STONE_WALL_UPPER_CORNER]);
+                animation.setScale(5);
+                break;
+
+            case AnimationConstants.AnimationNames.FLOOR_WOODEN:
+                animation = new Animation([GfxRegistry.FLOOR_WOODEN]);
+                animation.setScale(5);
+                break;
         }
 
         return animation;

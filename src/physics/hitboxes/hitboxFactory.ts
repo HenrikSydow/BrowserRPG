@@ -70,6 +70,36 @@ export abstract class HitboxFactory {
             case HitboxConstants.HitboxName.BasicWarp:
                 shapes.push(new Rectangle(0, 0, 100, 100));
                 break;
+            case HitboxConstants.HitboxName.SimpleFarmHouse:
+                shapes.push(new Rectangle(25, 200, 145, 250));
+                shapes.push(new Rectangle(170, 200, 90, 150)); 
+                shapes.push(new Rectangle(260, 200, 145, 250));
+                break;
+            case HitboxConstants.HitboxName.StoneWall:
+                shapes.push(new Rectangle(0, 120, 220, 70));
+                break;
+            case HitboxConstants.HitboxName.StoneWallEnd:
+                shapes.push(new Rectangle(0, 120, 120, 70));
+                break;
+            case HitboxConstants.HitboxName.StoneWallVertical:
+                shapes.push(new Rectangle(0, 0, 45, 240));
+                break;
+            case HitboxConstants.HitboxName.StoneWallLowerCornerLeft:
+                shapes.push(new Rectangle(0, 0, 45, 150));
+                shapes.push(new Rectangle(0, 140, 95, 70));
+                break;
+            case HitboxConstants.HitboxName.StoneWallLowerCornerRight:
+                shapes.push(new Rectangle(50, 0, 45, 150));
+                shapes.push(new Rectangle(0, 140, 95, 70));
+                break;
+            case HitboxConstants.HitboxName.StoneWallUpperCornerLeft:
+                shapes.push(new Rectangle(0, 120, 45, 160));
+                shapes.push(new Rectangle(45, 120, 5, 70));
+                break;
+            case HitboxConstants.HitboxName.StoneWallUpperCornerRight:
+                shapes.push(new Rectangle(5, 120, 45, 160));
+                shapes.push(new Rectangle(0, 120, 5, 70));
+                break;
         }
 
         return new Hitbox(x, y, shapes);
